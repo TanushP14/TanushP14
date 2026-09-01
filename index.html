@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tanush Pal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="lock-screen" id="lockScreen">
+      <div class="glow glow-one"></div>
+      <div class="glow glow-two"></div>
+      <svg class="wave-lines" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-60 170 C160 40 305 300 520 168 S850 39 1050 176 S1330 302 1510 130" />
+        <path d="M-80 340 C120 490 330 182 550 330 S865 486 1088 316 S1320 145 1520 310" />
+        <path d="M-50 500 C180 375 315 604 525 486 S850 353 1062 500 S1330 625 1500 458" />
+      </svg>
+      <section class="login-card" aria-labelledby="profileName">
+        <div class="avatar-wrap">
+          <svg class="avatar-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" pathLength="1" /></svg>
+          <img src="images/profile-pic.jpg" alt="Tanush Pal" class="avatar" />
+        </div>
+        <h1 id="profileName">Tanush Pal</h1>
+
+        <div class="mode-switch" role="tablist" aria-label="Sign-in method">
+          <button class="mode-tab active" id="pinTab" role="tab" aria-selected="true" aria-controls="pinPanel" data-mode="pin">PIN</button>
+          <button class="mode-tab" id="passwordTab" role="tab" aria-selected="false" aria-controls="passwordPanel" data-mode="password">Password</button>
+        </div>
+
+        <div class="panel active" id="pinPanel" role="tabpanel" aria-labelledby="pinTab">
+          <label class="sr-only" for="pinInput">Six digit PIN</label>
+          <div class="input-wrap">
+            <input id="pinInput" class="secret-input" type="password" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="Enter your PIN" />
+            <button class="clear-btn" data-clear="pinInput" aria-label="Clear PIN">×</button>
+          </div>
+          <div class="numpad" aria-label="Number pad">
+            <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+            <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+            <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+            <button class="empty" tabindex="-1" aria-hidden="true"></button><button data-key="0">0</button><button class="backspace" data-backspace aria-label="Delete last digit">⌫</button>
+          </div>
+          <button class="continue-btn" data-submit="pin">Unlock</button>
+        </div>
+
+        <div class="panel" id="passwordPanel" role="tabpanel" aria-labelledby="passwordTab" hidden>
+          <label class="sr-only" for="passwordInput">Password</label>
+          <div class="input-wrap">
+            <input id="passwordInput" class="secret-input" type="password" autocomplete="current-password" placeholder="Enter your password" />
+            <button class="clear-btn" data-clear="passwordInput" aria-label="Clear password">×</button>
+          </div>
+          <p class="hint">Use the keyboard to enter your password</p>
+          <button class="keyboard-toggle" id="keyboardToggle"><span>⌨</span> Open keyboard</button>
+          <div class="keyboard" id="keyboard" hidden aria-label="Keyboard"></div>
+          <button class="continue-btn" data-submit="password">Unlock</button>
+        </div>
+        <p class="error-message" id="errorMessage" role="alert" aria-live="polite"></p>
+      </section>
+      <p class="footer">TANUSH PAL <span>•</span> 2026</p>
+    </main>
+
+    <section class="welcome-screen" id="welcomeScreen" aria-live="polite" hidden>
+      <div class="welcome-stage">
+        <div class="welcome-banner" aria-hidden="true"><img id="welcomeBannerImage" src="images/welcome-banner-bg.jpg" alt="" /></div>
+        <div class="welcome-content">
+          <p class="eyebrow" id="welcomeKicker">ACCESS GRANTED</p>
+          <h2 id="welcomeTitle">Welcome<span>!</span></h2>
+          <div class="welcome-rule"></div>
+        </div>
+      </div>
+      <section class="dashboard" aria-label="Dashboard">
+        <div class="dashboard-texture" aria-hidden="true"></div>
+        <header class="dashboard-header">
+          <button class="dashboard-account-row" id="accountMenuButton" type="button" aria-label="Open profile card" aria-expanded="false">
+            <div class="account-avatar">
+              <svg class="account-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" pathLength="1" /></svg>
+              <img src="images/profile-pic.jpg" alt="" />
+            </div>
+            <div class="dashboard-message"><p class="dashboard-greeting" id="dashboardGreeting"></p><p class="daily-quote" id="dailyQuote"></p></div>
+          </button>
+          <div class="dashboard-utility">
+            <div class="dashboard-datetime" aria-label="Current time and date">
+              <time class="datetime-primary" id="dashboardTime"></time>
+              <div class="datetime-secondary"><time id="dashboardDateLong"></time><span class="datetime-dot">•</span><time id="dashboardDateNumeric"></time></div>
+            </div>
+            <div class="utility-divider" aria-hidden="true"></div>
+            <div class="weather-readout" aria-label="Current weather in Delhi, India"><span class="weather-icon" id="weatherIcon" aria-hidden="true">◌</span><span id="weatherTemperature">--°</span></div>
+          </div>
+          <div class="dashboard-shortcut-row">
+            <a class="acemate-shortcut" href="https://acemate.in" target="_blank" rel="noopener noreferrer" aria-label="Open Acemate website">
+              <span class="acemate-logo-frame"><img src="images/acemate-logo.png" alt="" /></span>
+              <span class="acemate-copy"><span class="acemate-label">Acemate</span><span class="acemate-tagline">Ace every exam</span></span>
+              <span class="acemate-arrow" aria-hidden="true">↗</span>
+            </a>
+            
+
+              <a class="acemate-shortcut" href="https://drive.google.com/drive/folders/1TD4luHM6CmFNWgk1mOBM_SJIPPSiZqQS?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Acemate website">
+              <span class="acemate-logo-frame"><img src="images/google-drive.png" alt="" /></span>
+              <span class="acemate-copy"><span class="acemate-label">Acemate - Google Drive</span><span class="acemate-tagline">For downloading files</span></span>
+              <span class="acemate-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="acemate-shortcut" href="https://1drv.ms/f/c/4c485585a21c8557/IgBZEHb8m2X1QK1pfsCPKwvrAdGSaat0VxpfCJYjypRTa5E?e=IrSMGK" target="_blank" rel="noopener noreferrer" aria-label="Open Acemate website">
+              <span class="acemate-logo-frame"><img src="images/microsoft-onedrive.jpg" alt="" /></span>
+              <span class="acemate-copy"><span class="acemate-label">Acemate - Microsoft Onedrive</span><span class="acemate-tagline">For showcase and presentataion</span></span>
+              <span class="acemate-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="acemate-shortcut synopsis-shortcut" href="https://app.ziteboard.com/" target="_blank" rel="noopener noreferrer" aria-label="Open Acemate project files">
+              <span class="acemate-logo-frame whiteboard-frame"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5h15v11h-15z"/><path d="M7.5 19.5 9 16.5m7.5 3L15 16.5M8.5 9h4m-4 3h6"/></svg></span>
+              <span class="acemate-copy"><span class="acemate-label">Whiteboard</span><span class="acemate-tagline">For drawing and brainstorming</span></span></span>
+              <span class="acemate-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="acemate-shortcut" href="https://1drv.ms/p/c/4c485585a21c8557/IQAQamcVZvf7RJN7nI6npGUyAfOf61IdjZObLjL-wVocEqI" target="_blank" rel="noopener noreferrer" aria-label="Open Acemate website">
+              <span class="acemate-logo-frame"><img src="images/Microsoft_Office_PowerPoint_(2025–present).png" alt="" /></span>
+              <span class="acemate-copy"><span class="acemate-label">Presentation - Acemate</span><span class="acemate-tagline">For slideshow</span></span>
+              <span class="acemate-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </header>
+        <button class="dashboard-logout" id="dashboardLogout" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H5.8A1.8 1.8 0 0 0 4 6.8v10.4A1.8 1.8 0 0 0 5.8 19H10"/><path d="M14 8l4 4-4 4M18 12H9"/></svg>
+          <span>Log out</span>
+        </button>
+      </section>
+    </section>
+    <aside class="profile-panel" id="profilePanel" aria-label="Profile card" aria-hidden="true">
+      <div class="profile-panel-backdrop" id="profilePanelBackdrop"></div>
+      <div class="profile-panel-sheet">
+        <button class="profile-panel-close" id="profilePanelClose" type="button" aria-label="Close profile card">×</button>
+        <p class="eyebrow">PROFILE CARD</p>
+        <img src="images/ID-card.png" alt="Tanush Pal ID card" class="id-card-image" />
+      </div>
+    </aside>
+    <button class="video-launcher" id="videoLauncher" aria-label="Play Acemate video" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="m16 10.1 4-2.4v8.6l-4-2.4z"/><path class="play-mark" d="m9.5 10 4 2-4 2z"/></svg>
+    </button>
+    <script src="script.js"></script>
+  </body>
+</html>
